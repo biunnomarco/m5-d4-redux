@@ -1,0 +1,11 @@
+.search-bar {
+    height: 1.6rem;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.cart-icon {
+    position: absolute;
+    right: 15px;
+    top: 0px
+}

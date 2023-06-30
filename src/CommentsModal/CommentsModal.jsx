@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './CommentsModal.css'
@@ -8,22 +8,24 @@ import { deleteComment, getComments, setAsin, setCommentID } from '../store/comm
 
 
 const CommentsModal = ({ asin, close, book }) => {
+   
 
     const dispatch = useDispatch()
     dispatch(setAsin(asin))
-
-    useEffect(() => {
-        //dispatch di una azione, commentSlice
-        dispatch(getComments())
-    }, [])
-
+    
     const allComments = useSelector(state => state.comments);
     const status = useSelector(state => state.comments.status);
 
     function deletePost(id) {
         dispatch(setCommentID(id));
-        dispatch(deleteComment())
+        dispatch(deleteComment()).then(() =>  dispatch(getComments()));
     }
+    useEffect(() => {
+        //dispatch di una azione, commentSlice
+        dispatch(getComments())
+    }, [])
+
+
     return (
         <div
             className="modal show comments-modal"
@@ -37,6 +39,7 @@ const CommentsModal = ({ asin, close, book }) => {
                 <Modal.Body>
                     {status === 'pending' && (<h6>Loading...</h6>)}
                     {status === 'error' && (<h6>Something went Wrong...</h6>)}
+                    {allComments.comments.length === 0 && (<p>Commenta per primo questo libro</p>)}
                     {allComments.comments.map((comment) => {
                         return (
                             <div key={comment._id}>

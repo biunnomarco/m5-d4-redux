@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 
 const endpoint = "https://striveschool-api.herokuapp.com/api/comments";
@@ -39,10 +40,13 @@ const commentsSlice = createSlice({
             state.status = 'error'
          })
          .addCase(deleteComment.fulfilled, (state, action) =>{
-            console.log("ok")
+           
          })
     }
 })
+
+
+
 
 export const {setAsin, setCommentID} = commentsSlice.actions;
 export const {fetchComments} = commentsSlice.actions
@@ -60,9 +64,9 @@ export const getComments = createAsyncThunk('comments/get', async () => {
 
 export const deleteComment = createAsyncThunk('comments/delete', async () => {
     const delRes = await fetch(endpoint + '/' + comment_ID, {
+        method: "DELETE",
         headers: {
-            method: "DELETE",
             "Authorization": apiKey
         }});
-        console.log(delRes)
+        
 })

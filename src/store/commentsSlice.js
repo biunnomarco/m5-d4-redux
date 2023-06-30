@@ -62,11 +62,11 @@ export const getComments = createAsyncThunk('comments/get', async () => {
 })
 
 
-export const deleteComment = createAsyncThunk('comments/delete', async () => {
+export const deleteComment = createAsyncThunk('comments/delete', async (_ , {dispatch}) => {
     const delRes = await fetch(endpoint + '/' + comment_ID, {
         method: "DELETE",
         headers: {
             "Authorization": apiKey
         }});
-        
+         
 })

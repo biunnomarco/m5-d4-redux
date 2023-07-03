@@ -3,6 +3,14 @@
     height: 400px;
 }
 
+.book-img:hover {
+    cursor: pointer;
+}
+
+.red-border {
+    border: 2px red solid !important;
+}
+
 .book-title {
     overflow: hidden;
     text-overflow: ellipsis;

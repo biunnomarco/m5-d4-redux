@@ -4,19 +4,24 @@ import Card from 'react-bootstrap/Card';
 import './SingleBook.css';
 import CommentsModal from '../CommentsModal/CommentsModal';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setAsin } from '../store/commentsSlice';
+import { selectedBook } from '../store/bookSlice';
 
 
 const SingleBook = ({ book }) => {
-  const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false);
 
-  function toggleCommentModal() {
-    setIsCommentsModalOpen(!isCommentsModalOpen)
+
+  const dispatch = useDispatch()
+  function selectBook() {
+    dispatch(setAsin(book.asin))
+    dispatch(selectedBook(book.title))
   }
 
   return (
     <>
-      <Card style={{ width: '18rem', height: '38rem' }}>
-        <Card.Img variant="top" src={book.img} className='book-img' />
+      <Card style={{ width: '18rem', height: '38rem' }} /* className={isSelected ? 'red-border' : ''} */>
+        <Card.Img onClick={()=>selectBook()} variant="top" src={book.img} className='book-img' />
         <Card.Body>
           <Card.Title className='book-title'>{book.title}</Card.Title>
           <br />
@@ -25,12 +30,10 @@ const SingleBook = ({ book }) => {
 
         </Card.Body>
         <Card.Footer className='d-flex justify-content-around'>
-          <Button variant="primary" onClick={() => toggleCommentModal()}>Show Comments</Button>
           <Button variant="primary">Add to Cart</Button>
         </Card.Footer>
       </Card>
 
-      {isCommentsModalOpen && (<CommentsModal book = {book} asin={ book.asin } close={toggleCommentModal}/>)}
     </>
   )
 }

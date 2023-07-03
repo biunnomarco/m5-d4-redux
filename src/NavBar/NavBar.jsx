@@ -8,31 +8,35 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { showGenre, nameGenre, searchBook } from '../store/bookSlice';
+import { setAsin } from '../store/commentsSlice';
+import icon from '../Assets/icon.png'
 
 
 
 
 const NavBar = () => {
     const books = useSelector(state => state.books);
-    console.log(books);
-
+    /* console.log(books); */
+     
     const dispatch = useDispatch();
 
     const selectGenre = (genre, name) => {
         dispatch(showGenre(genre));
         dispatch(nameGenre(name));
+        dispatch(setAsin(''))
     }
 
     const filterBooks = (e) => {
         dispatch(searchBook(e.target.value));
-        console.log(e.target.value)
+        /* console.log(e.target.value) */
     }
 
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
-                <Navbar.Brand href="#">BOOKS</Navbar.Brand>
+                <Navbar.Brand href="#">
+                    EPIBOOKS</Navbar.Brand>
                 <Navbar.Collapse id="navbarScroll" className='d-flex justify-content-end'>
                     <Nav
                         className="me-auto my-2 my-lg-0 align-items-center"

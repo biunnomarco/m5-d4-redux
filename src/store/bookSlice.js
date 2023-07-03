@@ -15,16 +15,19 @@ const allGenres = {
 }
 
 const initialState = {
-    data: [],
-    filteredData: [],
-    genre: '',
+    data: fantasy, history, horror, scifi, romance,
+    filteredData: fantasy, history, horror, scifi, romance,
+    genre: 'All Books',
     allGenres,
-
+    SelectedBook: '',
 }
 const bookSlice = createSlice({
     name: 'books',
     initialState,
     reducers: {
+        selectedBook(state, action) {
+            state.SelectedBook = action.payload
+        },
         showGenre(state, action) {
             state.data = action.payload;
             state.filteredData = action.payload;
@@ -40,5 +43,5 @@ const bookSlice = createSlice({
 })
 
 
-export const { showGenre, nameGenre, searchBook } = bookSlice.actions;
+export const { showGenre, nameGenre, searchBook, selectedBook } = bookSlice.actions;
 export default bookSlice.reducer

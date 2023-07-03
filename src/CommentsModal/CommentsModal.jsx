@@ -4,27 +4,23 @@ import Modal from 'react-bootstrap/Modal';
 import './CommentsModal.css'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteComment, getComments, setAsin, setCommentID } from '../store/commentsSlice';
+import { deleteComment, getComments, getPostPayload, postComment, refresh, setAsin, setCommentID } from '../store/commentsSlice';
 
 
-const CommentsModal = ({ asin, close, book }) => {
-   
-
+const CommentsModal = ({title, close, asin}) => {
     const dispatch = useDispatch()
-    dispatch(setAsin(asin))
-    
-    const allComments = useSelector(state => state.comments);
-    const status = useSelector(state => state.comments.status);
-
-    function deletePost(id) {
-        dispatch(setCommentID(id));
-        dispatch(deleteComment()).then(() =>  dispatch(getComments()));
+    const [comment, setComment] = useState('');
+    const [rate, setRate] = useState('');
+   
+    function pushPost() {
+        let postPayload = {
+            "comment": comment,
+            "rate": rate,
+            "elementId": asin,
+        };
+        /* dispatch(getPostPayload(postPayload))  */
+        dispatch(postComment(postPayload)).then(dispatch(getComments()).then(()=> close()))
     }
-    useEffect(() => {
-        //dispatch di una azione, commentSlice
-        dispatch(getComments())
-    }, [])
-
 
     return (
         <div
@@ -33,29 +29,18 @@ const CommentsModal = ({ asin, close, book }) => {
         >
             <Modal.Dialog centered size="lg" backdrop="static">
                 <Modal.Header >
-                    <Modal.Title>{book.title}</Modal.Title>
+                    <Modal.Title>"{title}"</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body>
-                    {status === 'pending' && (<h6>Loading...</h6>)}
-                    {status === 'error' && (<h6>Something went Wrong...</h6>)}
-                    {allComments.comments.length === 0 && (<p>Commenta per primo questo libro</p>)}
-                    {allComments.comments.map((comment) => {
-                        return (
-                            <div key={comment._id}>
-                                <p><b>Author: </b>{comment.author}</p>
-                                <p><b>Comment: </b>{comment.comment}</p>
-                                <p><b>Rate: </b>{comment.rate}</p>
-                                <button onClick={() => { deletePost(comment._id) }}>Delete Comment</button>
-                                <hr />
-                            </div>
-                        )
-                    })}
+                <Modal.Body  className='d-flex flex-column'>
+                    <input style={{height: '150px'}} type="text" placeholder='Insert comment' onChange={(e) => setComment(e.target.value)} />
+                    <br />
+                    <input type="text" placeholder='Insert a rate from 1 to 5' onChange={(e) => setRate(e.target.value)}/>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={close}>Close</Button>
-                    <Button variant="primary">Save changes</Button>
+                    <Button variant="primary" onClick={()=>pushPost()}>Submit</Button>
                 </Modal.Footer>
             </Modal.Dialog>
         </div>

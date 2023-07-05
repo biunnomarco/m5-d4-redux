@@ -4,13 +4,22 @@ import Card from 'react-bootstrap/Card';
 import './SingleBook.css';
 import CommentsModal from '../CommentsModal/CommentsModal';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAsin } from '../store/commentsSlice';
 import { selectedBook } from '../store/bookSlice';
+import cartSlice from '../store/cartSlice';
+import { addToCart } from '../store/cartSlice';
+import { Link } from 'react-router-dom';
+
 
 
 const SingleBook = ({ book }) => {
+  let quantity = 0;
 
+  const cart = useSelector(state => state.cart)
+  cart.cartElements.forEach((element) => {
+    if (book.asin === element.obj.asin) quantity = element.quantity
+  })
 
   const dispatch = useDispatch()
   function selectBook() {
@@ -30,7 +39,8 @@ const SingleBook = ({ book }) => {
 
         </Card.Body>
         <Card.Footer className='d-flex justify-content-around'>
-          <Button variant="primary">Add to Cart</Button>
+          <Link to={`/book/${book.asin}`}><Button variant='primary'> Show Details </Button></Link>
+          <Button variant="success" onClick={() =>dispatch(addToCart(book))}>Add to Cart ({quantity})</Button>
         </Card.Footer>
       </Card>
 

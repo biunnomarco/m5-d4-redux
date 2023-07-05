@@ -1,0 +1,25 @@
+.cart-img {
+    width: 180px !important;
+    height: 220px !important;
+
+}
+
+.cart-body {
+    display: flex !important;
+}
+
+.cart-card {
+    width: 20rem;
+    height: 15rem;
+    display: flex;
+    border-radius: 20px;
+}
+.cart-title {
+   
+    overflow: hidden !important; 
+text-overflow: ellipsis !important;
+display: -webkit-box !important;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical !important;
+}
+

@@ -8,6 +8,7 @@ import '../MyBody/MyBody.css'
 import { ModalFooter } from 'react-bootstrap'
 import ModifyModal from '../ModifyModal/ModifyModal'
 import Alert from 'react-bootstrap/Alert';
+import StarRating from './StarRating'
 
 const CommentSection = () => {
 
@@ -50,6 +51,7 @@ const CommentSection = () => {
                 <Alert key={'warning'} variant={'warning'} className='mt-3'>
                     Ancora nulla da visualizzare, commenta per primo questo libro
                 </Alert>)}
+                <div className='d-flex flex-column-reverse'>
             {allComments.asin && (
                 allComments.comments.map((comment) => {
                     return (
@@ -57,7 +59,7 @@ const CommentSection = () => {
                             <p><b>User: </b> <em> "{comment.author}"</em></p>
                             <p><b>Comment: </b>{comment.comment}</p>
                             <p><b>Rate: </b>{comment.rate}</p>
-
+                            <StarRating rate={comment.rate}/>
                             <ModalFooter>
                                 <button
                                     className='btn-danger btn'
@@ -75,6 +77,7 @@ const CommentSection = () => {
                     )
                 })
             )}
+            </div>
             {postCommentModal && (<CommentsModal title={allBooks.SelectedBook} asin={allComments.asin} close={() => toggleComment()} />)}
         </div>
     )

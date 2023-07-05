@@ -9,7 +9,6 @@ const LatestReleases = () => {
 
   function toggleIsSelected() {
     setIsSelected(!isSelected)
-    console.log(isSelected)
     /* e.currentTarget.classList.toggle('red-border') */
   }
 

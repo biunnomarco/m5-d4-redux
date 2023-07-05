@@ -20,6 +20,7 @@ const ModifyModal = ({title, close, asin}) => {
         setComment(thisComment.comment) 
         setRate(thisComment.rate)
     }, [])
+    
     let putPayload = {
             "comment": comment,
             "rate": rate,

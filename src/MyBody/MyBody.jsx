@@ -12,8 +12,8 @@ const MyBody = () => {
     return (
         <Container fluid>
             <Row>
-                <Col className='col-8'><LatestReleases /></Col>
-                <Col className='col-4'><CommentSection /></Col>
+                <Col className='col-7 col-lg-8'><LatestReleases /></Col>
+                <Col className='col-5 col-lg-4'><CommentSection /></Col>
             </Row>
         </Container>
     )

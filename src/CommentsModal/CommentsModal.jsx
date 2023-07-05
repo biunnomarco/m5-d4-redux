@@ -18,8 +18,8 @@ const CommentsModal = ({title, close, asin}) => {
             "rate": rate,
             "elementId": asin,
         };
-        /* dispatch(getPostPayload(postPayload))  */
-        dispatch(postComment(postPayload)).then(dispatch(getComments()).then(()=> close()))
+        dispatch(postComment(postPayload)).then(() => dispatch(refresh()))
+        close()
     }
 
     return (

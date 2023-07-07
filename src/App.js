@@ -1,9 +1,5 @@
 import React from "react";
-import LatestReleases from "./LatestReleases/LatestReleases";
 import './App.css'
-import NavBar from "./NavBar/NavBar";
-import MyBody from "./MyBody/MyBody";
-import MyCarousel from "./MyCarousel/MyCarousel";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Hompage from "./Pages/Hompage";
 import ErrorPage from "./Pages/ErrorPage";

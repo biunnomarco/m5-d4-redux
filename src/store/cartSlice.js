@@ -51,6 +51,7 @@ export default cartSlice.reducer;
 
 
 
+
 function decreseQuantity(cart, asin) {
     let quantity = 0
     cart.forEach((obj) => {

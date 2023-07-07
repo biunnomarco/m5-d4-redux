@@ -8,7 +8,6 @@ import '../MyBody/MyBody.css'
 import { ModalFooter } from 'react-bootstrap'
 import ModifyModal from '../ModifyModal/ModifyModal'
 import Alert from 'react-bootstrap/Alert';
-import StarRating from './StarRating'
 
 const CommentSection = () => {
 
@@ -23,7 +22,7 @@ const CommentSection = () => {
 
     const allComments = useSelector(state => state.comments)
     const allBooks = useSelector(state => state.books) // allBooks.SelectedBook
-
+    
 
     useEffect(() => {
         dispatch(getComments())
@@ -59,7 +58,7 @@ const CommentSection = () => {
                             <p><b>User: </b> <em> "{comment.author}"</em></p>
                             <p><b>Comment: </b>{comment.comment}</p>
                             <p><b>Rate: </b>{comment.rate}</p>
-                            <StarRating rate={comment.rate}/>
+                            {/* <StarRating rate={comment.rate}/> */}
                             <ModalFooter>
                                 <button
                                     className='btn-danger btn'

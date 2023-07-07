@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import bookSlice from "./bookSlice";
 import commentsSlice from "./commentsSlice";
 import cartSlice from "./cartSlice";
+import detailsSlice from "./detailsSlice";
 
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
         books: bookSlice,
         comments: commentsSlice,
         cart: cartSlice,
+        details: detailsSlice,
     }
 })
 

@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
-import { showGenre, nameGenre, searchBook } from '../store/bookSlice';
+import { showGenre, nameGenre, searchBook, selectedBook } from '../store/bookSlice';
 import { setAsin } from '../store/commentsSlice';
 import icon from '../Assets/icon.png'
 import { Link } from 'react-router-dom';
@@ -25,6 +25,7 @@ const NavBar = (position) => {
         dispatch(showGenre(genre));
         dispatch(nameGenre(name));
         dispatch(setAsin(''))
+        dispatch(selectedBook(''))
     }
 
     const filterBooks = (e) => {
@@ -45,7 +46,7 @@ const NavBar = (position) => {
                     >
                         <Nav.Item>
                             <Link to={'/'} className='link home'>
-                                <img className='logo' src={icon} alt='' /> 
+                                <img className='logo me-2' src={icon} alt='' /> 
                                 <span><b>EPIBOOKS</b></span>
                             </Link>
                         </Nav.Item>

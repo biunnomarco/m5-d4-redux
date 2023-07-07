@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const SingleBook = ({ book }) => {
+const SingleBook = ({ book, position }) => {
   let quantity = 0;
 
   const cart = useSelector(state => state.cart)
@@ -39,7 +39,10 @@ const SingleBook = ({ book }) => {
 
         </Card.Body>
         <Card.Footer className='d-flex justify-content-around'>
-          <Link to={`/book/${book.asin}`}><Button variant='primary'> Show Details </Button></Link>
+          {!position && (<Link to={`/book/${book.asin}`}>
+            <Button variant='primary'> Show Details </Button>
+          </Link>)}
+          
           <Button variant="success" onClick={() =>dispatch(addToCart(book))}>Add to Cart ({quantity})</Button>
         </Card.Footer>
       </Card>

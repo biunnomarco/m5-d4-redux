@@ -20,7 +20,7 @@ const CartElement = ({title, src, price, asin, quantity, product}) => {
           size="sm" 
           onClick={() =>dispatch(removeFromCart(asin))}
           > - </Button>
-          <Card.Title>Q= {quantity}</Card.Title>
+          <Card.Title>{quantity}</Card.Title>
           <Button 
           variant='success'  
           size="sm"

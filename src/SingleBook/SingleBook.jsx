@@ -10,6 +10,7 @@ import { selectedBook } from '../store/bookSlice';
 import cartSlice from '../store/cartSlice';
 import { addToCart } from '../store/cartSlice';
 import { Link } from 'react-router-dom';
+import { setOffCanvas } from '../store/offCanvasSlice';
 
 
 
@@ -22,15 +23,17 @@ const SingleBook = ({ book, position }) => {
   })
 
   const dispatch = useDispatch()
-  function selectBook() {
+
+  function selectBook(width) {
     dispatch(setAsin(book.asin))
     dispatch(selectedBook(book.title))
+    if (width <= 576) dispatch(setOffCanvas(true))
   }
 
   return (
     <>
       <Card style={{ width: '18rem', height: '38rem' }} /* className={isSelected ? 'red-border' : ''} */>
-        <Card.Img onClick={()=>selectBook()} variant="top" src={book.img} className='book-img' />
+        <Card.Img onClick={()=>selectBook(window.innerWidth)} variant="top" src={book.img} className='book-img' />
         <Card.Body>
           <Card.Title className='book-title'>{book.title}</Card.Title>
           <br />

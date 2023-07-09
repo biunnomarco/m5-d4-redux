@@ -17,7 +17,7 @@ const cartSlice = createSlice({
             state.cartTotal = calcTot(state.cartElements);
         },
         removeFromCart(state, action) {
-            let quanti = decreseQuantity(state.cartElements, action.payload)
+            let quanti = modifyQuantity(state.cartElements, action.payload , '-')
             if (quanti === 0) {
                 state.cartElements = state.cartElements.filter(element => element.obj.asin !== action.payload);
             }
@@ -25,15 +25,13 @@ const cartSlice = createSlice({
             state.cartTotal = calcTot(state.cartElements);
         },
         addToCart(state, action) {
-            let quantity = multipleObject(state.cartElements, action.payload.asin)
+            let quantity = modifyQuantity(state.cartElements, action.payload.asin, '+')
             if (quantity === 1) {
                 const cartElement = {
                     obj: action.payload,
                     quantity: quantity
                 };
                 state.cartElements.push(cartElement);
-            } else {
-                increseQuantity(state.cartElements, action.payload.asin)
             }
             state.cartNumber = calcNumberOfObj(state.cartElements)
             state.cartTotal = calcTot(state.cartElements);
@@ -50,36 +48,26 @@ export const { addToCart, emptyCart, removeFromCart, removeAllSameCart } = cartS
 export default cartSlice.reducer;
 
 
-
-
-function decreseQuantity(cart, asin) {
-    let quantity = 0
-    cart.forEach((obj) => {
-        if (obj.obj.asin === asin) {
-            obj.quantity -= 1
-            quantity = obj.quantity
+function modifyQuantity(cart, asin, operation) {
+   
+    let index = isInCart(cart, asin); console.log(index)
+    if (index !== -1 ) {
+        if (operation === '+') {
+            console.log(cart[index])
+            cart[index].quantity ++;
+        } else {
+            if (cart[index].quantity > 1) cart[index].quantity --;
+            else return 0
         }
-    })
-    return quantity
+    } else {
+        if (operation === '+') {
+            return 1
+        }
+    }
 }
 
-
-function multipleObject(cart, asin) {
-    let num = 1;
-    cart.forEach((obj) => {
-        if (obj.obj.asin === asin) {
-            num += 1;
-        }
-    })
-    return num
-}
-
-function increseQuantity(cart, asin) {
-    cart.forEach((obj) => {
-        if (obj.obj.asin === asin) {
-            obj.quantity += 1
-        }
-    })
+function isInCart(cart, asin) {
+    return cart.findIndex((element) => element.obj.asin === asin)
 }
 
 function calcNumberOfObj(cart) {

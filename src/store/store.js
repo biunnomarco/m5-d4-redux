@@ -3,6 +3,7 @@ import bookSlice from "./bookSlice";
 import commentsSlice from "./commentsSlice";
 import cartSlice from "./cartSlice";
 import detailsSlice from "./detailsSlice";
+import offCanvasSlice from "./offCanvasSlice";
 
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
         comments: commentsSlice,
         cart: cartSlice,
         details: detailsSlice,
+        myOffCanvas: offCanvasSlice,
     }
 })
 

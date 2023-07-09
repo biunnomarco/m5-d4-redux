@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 
 const endpoint = "https://striveschool-api.herokuapp.com/api/comments";
-let apiKey = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdlNTJlOWI5YzBmNzAwMTQ0ODRlZjAiLCJpYXQiOjE2ODc2MDMxMDEsImV4cCI6MTY4ODgxMjcwMX0.fl3U_7efumNdxrEMiZo5d4Jw2JxcHczJgA_aTuUJkO8";
+let apiKey = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdlNTJlOWI5YzBmNzAwMTQ0ODRlZjAiLCJpYXQiOjE2ODg4MjQxOTcsImV4cCI6MTY5MDAzMzc5N30.Tc6HseIlMtea2wRMgjv5Tr1uBHpyfm4vF2O-EWELcB0";
 let asinello = '';
 let comment_ID = '';
 

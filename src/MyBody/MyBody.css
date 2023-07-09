@@ -1,7 +1,7 @@
 .must-sticky {
     position: sticky;
     right: 0;
-    top: 40px;
+    top: 50px;
     height: 100vh;
     overflow-y: auto;
     padding-bottom: 30px;

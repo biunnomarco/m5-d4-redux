@@ -62,7 +62,7 @@ const NavBar = (position) => {
                                 <input
                                     type="text"
                                     placeholder="Search"
-                                    className="me-2 search-bar"
+                                    className="me-2 search-bar  ps-1 pb-1"
                                     onInput={filterBooks}
                                 />
                             </div>

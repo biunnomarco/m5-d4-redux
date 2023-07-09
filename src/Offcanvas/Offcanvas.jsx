@@ -8,11 +8,11 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 const MyOffcanvas = () => {
-    /* const [show, setShow] = useState(false); */
+   
 
     const offCanvasState = useSelector(state => state.myOffCanvas)
     const handleClose = () => {dispatch(setOffCanvas(false))};
-    const handleShow = () => {dispatch(setOffCanvas(true))};
+    
 
     const dispatch = useDispatch()
 

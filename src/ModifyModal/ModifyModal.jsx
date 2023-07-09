@@ -45,9 +45,9 @@ const ModifyModal = ({title, close, asin}) => {
                 </Modal.Header>
 
                 <Modal.Body  className='d-flex flex-column'>
-                    <input style={{height: '150px'}} type="text" placeholder={thisComment.comment} onChange={(e) => {setComment(e.target.value)}} />
+                    <input style={{height: '150px'}} type="text" value={thisComment.comment} onChange={(e) => {setComment(e.target.value)}} />
                     <br />
-                    <input type="text" placeholder={thisComment.rate} onChange={(e) => setRate(e.target.value)}/>
+                    <input type="text" value={thisComment.rate} onChange={(e) => setRate(e.target.value)}/>
                 </Modal.Body>
 
                 <Modal.Footer>
